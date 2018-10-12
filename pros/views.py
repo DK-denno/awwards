@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
 from .forms import SignUpForm
+from .models import Profile
 from django.contrib.auth import login, authenticate
 # Create your views here.
 def index(request):
@@ -28,5 +29,5 @@ def signup(request):
     
 def profile(request):
         current_user=request.user
-        profile = profile.objects.get(user=current_user)
+        profile = Profile.objects.get(user=current_user)
         return render(request,'profile/profile.html',{"profile":profile})
