@@ -60,7 +60,7 @@ class Posts(models.Model):
         return pictures
 
 class Images(models.Model):
-    post = models.ForeignKey(Posts, default=None)
+    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images')
     caption = models.CharField(max_length=250)
   
