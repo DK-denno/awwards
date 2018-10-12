@@ -1,0 +1,12 @@
+[2018-10-12 11:06:23.047] [exthost] [info] extension host started
+[2018-10-12 11:06:23.068] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2018-10-12 11:06:23.069] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2018-10-12 11:06:23.078] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2018-10-12 11:06:23.078] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/emmet/dist/extension
+[2018-10-12 11:06:23.123] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2018-10-12 11:06:23.123] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/git/dist/main
+[2018-10-12 11:06:23.324] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2018-10-12 11:06:23.324] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/merge-conflict/dist/extension
+[2018-10-12 11:06:23.335] [exthost] [info] ExtensionService#_doActivateExtension vscode.search-rg {"startup":true,"activationEvent":"*"}
+[2018-10-12 11:06:23.335] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/search-rg/dist/extension
+[2018-10-12 11:06:23.341] [exthost] [info] eager extensions activated
