@@ -2,29 +2,46 @@
 {% load bootstrap4 %}
 {% block content %}
 <h1>HOME PAGE</h1>
-<form id="post_form" method="post" action="" enctype="multipart/form-data">
+{% for post in posts %}
+{{post.link}}
 
-    {% csrf_token %}
-   <div class='row'>
-       <div class='col-md-4 col-xs-4 col-sm-4'></div>
-    {% for field in postForm %}
-        {{ field }} <br />
-    {% endfor %}
-</div>
-<div class='col-md-4 col-xs-4 col-sm-4'>
+<div id="demo" class="carousel slide" data-ride="carousel">
 
-    {{ formset.management_form }}
-    {% for form in formset %}
-        {{ form }}
-    {% endfor %}
-    </div>
-</div>
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+      
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="{{post.image1.url}}" alt="Los Angeles">
+          </div>
+          <div class="carousel-item">
+            <img src="{{post.image2.url}}" alt="Chicago">
+          </div>
+          <div class="carousel-item">
+            <img src="{{post.image3.url}}" alt="New York">
+          </div>
+        </div>
+      
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      
+      </div>
+{% endfor %}
+<form action="{% url 'posts' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
 
-    <input type="submit" name="submit" value="Submit" />
+    {% bootstrap_form form %}
+    
+    <button class='btn btn-primary' type='submit' >SUBMIT</button>
 </form>
-
-<video width='400' controls>
-        <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
-        Your browser does not support the video tag.
-        </video>
 {% endblock %}

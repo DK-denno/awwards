@@ -24,7 +24,11 @@ class Profile(models.Model):
 
 class Posts(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
+    name = models.CharField(max_length=50)
     link = models.URLField()
+    image1 = models.ImageField(upload_to='images')
+    image2 = models.ImageField(upload_to='images')
+    image3 = models.ImageField(upload_to='images') 
     postedon = models.DateTimeField(auto_now_add=True)
     video = models.FileField(upload_to='videos',null=True)
     
@@ -59,11 +63,6 @@ class Posts(models.Model):
         pictures = cls.objects.get(pk=id)
         return pictures
 
-class Images(models.Model):
-    post = models.ForeignKey(Posts, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images')
-    caption = models.CharField(max_length=250)
-  
 
 
     

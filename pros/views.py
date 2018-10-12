@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.forms import modelformset_factory
+
 from django.shortcuts import render,redirect
-from .forms import SignUpForm,ProfileForm,PostsForm,ImageForm
-from .models import Profile,Images
+from .forms import SignUpForm,ProfileForm,PostsForm
+from .models import Profile,Posts
 from django.contrib.auth import login, authenticate
 # Create your views here.
 def index(request):
-        postForm = PostsForm()
-        ImageFormSet = modelformset_factory(Images,form=ImageForm, extra=4)
-        formset = ImageFormSet(queryset=Images.objects.none())
-        return render(request, 'index.html',{'postForm': postForm, 'formset': formset})
+        posts = Posts.objects.all()
+        form = PostsForm()
+        return render(request,'index.html',{"form":form,"posts":posts})
 
-      
 def signup(request):
     form = SignUpForm
     if request.method == 'POST':
@@ -46,19 +44,11 @@ def profile(request):
         return render(request,'profile/profile.html',{"form":form,"profile":profile})
 
 def posts(request):
-        ImageFormSet = modelformset_factory(Images,form=ImageForm, extra=4)
-
         if request.method == 'POST':
-                postform = PostsForm(request.POST)
-                formset = ImageFormSet(request.POST, request.FILES,
-                               queryset=Images.objects.none())
-                if postForm.is_valid() and formset.is_valid():
-                        post_form = postform.save(commit=False)
-                        post_form.user = request.user
-                        post_form.save()
-                for form in formset.cleaned_data:
-                        image = form['image']
-                        photo = Images(post=post_form, image=image)
-                        photo.save()
+                form = PostsForm(request.POST,request.FILES)
+                if form.is_valid():
+                        post = form.save(commit=False)
+                        post.user = request.user
+                        post.save()
                         return redirect('index')
         return redirect('index')
