@@ -25,6 +25,7 @@ class Profile(models.Model):
 class Posts(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
     caption = models.CharField(max_length=250)
+    link = models.URLField()
     image = models.ImageField(upload_to='posts')
     postedon = models.DateTimeField(auto_now_add=True)
     
