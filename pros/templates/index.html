@@ -1,1 +1,12 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
 <h1>HOME PAGE</h1>
+<form action="{% url 'posts' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form %}
+    
+    <button class='btn btn-primary' type='submit' >SUBMIT</button>
+</form>
+{% endblock %}

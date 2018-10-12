@@ -2,12 +2,13 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
-from .forms import SignUpForm,ProfileForm
+from .forms import SignUpForm,ProfileForm,PostsForm
 from .models import Profile
 from django.contrib.auth import login, authenticate
 # Create your views here.
 def index(request):
-    return render(request,'index.html')
+        form = PostsForm()
+        return render(request,'index.html',{"form":form})
 
 def signup(request):
     form = SignUpForm
@@ -41,4 +42,12 @@ def profile(request):
                         return render(request,'profile/profile.html',{"profile":profile,"form":form,"message":message})
         return render(request,'profile/profile.html',{"form":form,"profile":profile})
 
-
+def posts(request):
+        if request.method == 'POST':
+                form = PostsForm(request.POST,request.FILES)
+                if form.is_valid():
+                        post = form.save(commit=False)
+                        post.user = request.user
+                        post.save()
+                        return redirect('index')
+        return redirect('index')
