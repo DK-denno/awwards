@@ -22,4 +22,9 @@
 
     <input type="submit" name="submit" value="Submit" />
 </form>
+
+<video width='400' controls>
+        <source src='{{ MEDIA_URL }}{{ videofile }}' type='video/mp4'>
+        Your browser does not support the video tag.
+        </video>
 {% endblock %}

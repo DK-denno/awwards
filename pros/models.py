@@ -26,7 +26,7 @@ class Posts(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
     link = models.URLField()
     postedon = models.DateTimeField(auto_now_add=True)
-    video = models.FileField(upload_to='videos'null=True)
+    video = models.FileField(upload_to='videos',null=True)
     
     
     def __str__(self):
