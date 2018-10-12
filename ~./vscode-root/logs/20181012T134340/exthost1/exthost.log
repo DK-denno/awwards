@@ -16,3 +16,7 @@
 [2018-10-12 14:19:56.518] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/html-language-features/client/dist/htmlMain
 [2018-10-12 14:21:09.704] [exthost] [info] ExtensionService#_doActivateExtension vscode.css-language-features {"startup":false,"activationEvent":"onLanguage:css"}
 [2018-10-12 14:21:09.704] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/css-language-features/client/dist/cssMain
+[2018-10-12 19:10:16.904] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2018-10-12 19:10:16.904] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/typescript-language-features/dist/extension
+[2018-10-12 19:11:01.050] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:typescript"}
+[2018-10-12 19:11:01.050] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension

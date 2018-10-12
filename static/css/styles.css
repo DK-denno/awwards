@@ -40,8 +40,10 @@
 }
 #prof {
   border-radius: 50%;
-  size: 50%;
+  size: 20%;
+  width: 20%;
 }
+
 .overflowTest {
   color: white;
   padding: 15px;

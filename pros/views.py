@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+from .serializer import PostsSerializer
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,ProfileForm,PostsForm,Comments
 from .models import Profile,Posts
@@ -77,3 +81,18 @@ def profiles(request,id):
         user=User.objects.get(id=id)
         posts = Posts.objects.filter(user=user)
         return render(request,'profile/profiles.html',{"user":user,"posts":posts})
+
+class PostList(APIView):
+        def get(self,request,format=None):
+                postlist = Posts.objects.all()
+                serialized = PostsSerializer(postlist,many=True)
+                return Response(serialized.data)
+
+        def post(self,request,format=None):
+                serializing = PostsSerializer(data=request.data)
+                if serializing.is_valid():
+                        serialized.save()
+                        return Response(serialized.data,status=status.HTTP_201_CREATED)
+                return Response(serialized.errors,status=staus.HTTP_401_BAD_REQUEST)
+        
+        
