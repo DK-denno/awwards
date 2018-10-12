@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/',include('registration.backends.simple.urls')),
     url(r'',include('pros.urls')),
-    url(r'^api-token-auth/', obtain_auth_token)
+    url(r'^token-auth/', obtain_auth_token)
 ]

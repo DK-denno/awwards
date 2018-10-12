@@ -4,10 +4,12 @@ from __future__ import unicode_literals
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from .serializer import PostsSerializer
+from .serializer import PostsSerializer,ProfileSerializer
+from .permissions import IsAdminOrReadOnly
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,ProfileForm,PostsForm,Comments
 from .models import Profile,Posts
+from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 # Create your views here.
@@ -84,15 +86,79 @@ def profiles(request,id):
 
 class PostList(APIView):
         def get(self,request,format=None):
-                postlist = Posts.objects.all()
-                serialized = PostsSerializer(postlist,many=True)
+                profiles = Posts.objects.all()
+                serialized = PostsSerializer(profiles,many=True)
                 return Response(serialized.data)
 
         def post(self,request,format=None):
                 serializing = PostsSerializer(data=request.data)
                 if serializing.is_valid():
-                        serialized.save()
+                        serializing.save()
                         return Response(serialized.data,status=status.HTTP_201_CREATED)
                 return Response(serialized.errors,status=staus.HTTP_401_BAD_REQUEST)
         
+    
+
+class ProfilesList(APIView):
+        def get(self,request,format=None):
+                postlist = Profile.objects.all()
+                serialized = ProfileSerializer(postlist,many=True)
+                return Response(serialized.data)
+
         
+        def post(self,request,format=None):
+                serializing = ProfileSerializer(data=request.data)
+                if serializing.is_valid():
+                        serializing.save()
+                        return Response(serializing.data,status=status.HTTP_201_CREATED)
+                return Response(serializing.errors,status=status.HTTP_401_BAD_REQUEST)
+
+class ProfileData(APIView):
+        permission_classes = (IsAdminOrReadOnly)
+        def get_profile_data(self,pk):
+                try:
+                        return Profile.objects.get(id=pk)
+                except Profile.DoesNotExist:
+                        return Http404
+
+        def get(self,request,pk,format=None):
+                profile = self.get_profile_data(pk)
+                serialized = PostsSerializer(profile)
+                return Response(serialized.data)
+        
+        def put(self,request,pk,format=None):
+                profile = self.get_profile_data(pk)
+                updated_profile = ProfileSerializer(profile,request.data)
+                if updated_profile.is_valid():
+                        updated_profile.save()
+                        return Response(updated_profile.data)
+                return Response(updated_profile.errors,status=status.HTTP_401_BAD_REQUEST)
+        
+        def delete(self,request,pk,format=None):
+                prof = self.get_profile_data(pk)
+                prof.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

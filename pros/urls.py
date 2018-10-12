@@ -12,7 +12,10 @@ urlpatterns=[
     url(r'^one/(?P<id>\d+)',views.get_post_by_id,name='one'),
     url(r'^comment/(\d+)',views.comment,name='comment'),
     url(r'^profiles/(\d+)',views.profiles,name='profiles'),
-    url(r'^api/posts',views.PostList.as_view())
+    url(r'^api/posts',views.PostList.as_view()),
+    url(r'^api/profiles',views.ProfilesList.as_view()),
+    url(r'^api/profiles-id/(?P<pk>[0-9]+)/$',
+        views.ProfileData.as_view()),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
