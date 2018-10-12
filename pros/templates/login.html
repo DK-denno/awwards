@@ -12,17 +12,18 @@
                 
 
                 <div class="header" style="margin-left: 10%;">
+                    <h1>LOGIN</h1>
                     <img src="" />
                 </div>
                
                 <div class="panel-body">
 
-                    <form action="/signup/" style="width: 100%;" method="post">
+                    <form action="/auth/login/" style="width: 100%;" method="post">
                         {% csrf_token %}
                         {% bootstrap_form form%}
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm" value="Create account">
+                            <input type="submit" class="btn btn-primary btn-sm" value="Login">
                         </div>
 
                         <input type="hidden" name="next" value="{{next}}">
@@ -31,7 +32,7 @@
                     </form>
 
                 </div>
-                <a href='/auth/login' style="color:blue" >Login</a>
+                <p>Don't have an account,click here to <a href='/signup/' style="color:blue" >Register</a></p>
 
             </div>
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import SignUpForm
 from django.contrib.auth import login, authenticate
 # Create your views here.
@@ -20,6 +20,7 @@ def signup(request):
             user=authenticate(username=username,email=email,password=password)
             user.save()
             login(request,user)
+            return redirect('/')
     return render(request,'signup.html',{"form":form})
 
-    return render('signup.html')
+    
