@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{post.user.username}}
+<video width="320" height="240" autoplay controls>
+        <!-- <source src="{{post.video.url}}" type="video/mp4">
+        <source src="{{post.video.url}}" type="video/mkv">
+        <source src="{{post.video.url}}" type="video/ogg"> -->
+        Your browser does not support the video tag.
+      </video>
+      <form id='comment' action="/comment/{{post.id}}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        {% bootstrap_form comm %}
+        <input type="submit" class="btn btn-primary btn-lg" value="Add comment">
+    </form>
+{% endblock %}

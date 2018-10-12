@@ -9,6 +9,8 @@ urlpatterns=[
     url(r'^signup/',views.signup,name='signup'),
     url(r'^profile/',views.profile,name='profile'),
     url(r'^post/',views.posts,name='posts'),
+    url(r'^one/(\d+)',views.get_post_by_id,name='one'),
+    url(r'^comment/(\d+)',views.comment,name='comment'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
