@@ -19,8 +19,14 @@ def signup(request):
             password = form.cleaned_data['password1']
             user=authenticate(username=username,email=email,password=password)
             user.save()
+            profile=Profile(user=user)
+            profile.save()
             login(request,user)
             return redirect('/')
     return render(request,'signup.html',{"form":form})
 
     
+def profile(request):
+        current_user=request.user
+        profile = profile.objects.get(user=current_user)
+        return render(request,'profile/profile.html',{"profile":profile})
