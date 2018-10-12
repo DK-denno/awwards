@@ -3,12 +3,12 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from .forms import SignUpForm
-from django.contrib.auth import login authenticate
+from django.contrib.auth import login, authenticate
 # Create your views here.
 def index(request):
     return render(request,'index.html')
 
-def Sigup(request):
+def signup(request):
     form = SignUpForm
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -20,6 +20,6 @@ def Sigup(request):
             user=authenticate(username=username,email=email,password=password)
             user.save()
             login(request,user)
-    return render(request,'signup.html')
+    return render(request,'signup.html',{"form":form})
 
     return render('signup.html')

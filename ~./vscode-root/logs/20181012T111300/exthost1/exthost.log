@@ -14,3 +14,11 @@
 [2018-10-12 11:15:17.364] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/python/out/pythonMain
 [2018-10-12 11:27:02.856] [exthost] [info] ExtensionService#_doActivateExtension vscode.html-language-features {"startup":false,"activationEvent":"onLanguage:html"}
 [2018-10-12 11:27:02.856] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/html-language-features/client/dist/htmlMain
+[2018-10-12 12:36:31.142] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2018-10-12 12:36:31.143] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/configuration-editing/dist/extension
+[2018-10-12 12:36:31.187] [exthost] [info] ExtensionService#_doActivateExtension vscode.extension-editing {"startup":false,"activationEvent":"onLanguage:json"}
+[2018-10-12 12:36:31.187] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/extension-editing/dist/extension
+[2018-10-12 12:36:31.296] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"activationEvent":"onLanguage:json"}
+[2018-10-12 12:36:31.296] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/json-language-features/client/dist/jsonMain
+[2018-10-12 12:36:31.483] [exthost] [info] ExtensionService#_doActivateExtension vscode.npm {"startup":false,"activationEvent":"onLanguage:json"}
+[2018-10-12 12:36:31.483] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/npm/dist/main
