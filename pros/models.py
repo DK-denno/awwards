@@ -24,9 +24,7 @@ class Profile(models.Model):
 
 class Posts(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='posts')
-    caption = models.CharField(max_length=250)
     link = models.URLField()
-    image = models.ImageField(upload_to='posts')
     postedon = models.DateTimeField(auto_now_add=True)
     
     
@@ -59,6 +57,11 @@ class Posts(models.Model):
     def get_image_by_id(cls, id):
         pictures = cls.objects.get(pk=id)
         return pictures
+
+class Images(models.Model):
+    post = models.ForeignKey(Posts, default=None)
+    image = models.ImageField(upload_to='images')
+    caption = models.CharField(max_length=250)
 
 
     

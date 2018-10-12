@@ -2,11 +2,24 @@
 {% load bootstrap4 %}
 {% block content %}
 <h1>HOME PAGE</h1>
-<form action="{% url 'posts' %}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
+<form id="post_form" method="post" action="" enctype="multipart/form-data">
 
-    {% bootstrap_form form %}
-    
-    <button class='btn btn-primary' type='submit' >SUBMIT</button>
+    {% csrf_token %}
+   <div class='row'>
+       <div class='col-md-4 col-xs-4 col-sm-4'></div>
+    {% for field in postForm %}
+        {{ field }} <br />
+    {% endfor %}
+</div>
+<div class='col-md-4 col-xs-4 col-sm-4'>
+
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form }}
+    {% endfor %}
+    </div>
+</div>
+
+    <input type="submit" name="submit" value="Submit" />
 </form>
 {% endblock %}
