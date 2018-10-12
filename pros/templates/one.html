@@ -8,6 +8,12 @@
         <source src="{{post.video.url}}" type="video/ogg"> -->
         Your browser does not support the video tag.
       </video>
+      <h2>
+          {% for com in post.comments.all %}
+            {{com.user.username}} : {{com.comment}}
+            <br>
+          {% endfor %}
+      </h2>
       <form id='comment' action="/comment/{{post.id}}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
 
