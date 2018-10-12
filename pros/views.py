@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
-from .forms import SignUpForm
+from .forms import SignUpForm,ProfileForm
 from .models import Profile
 from django.contrib.auth import login, authenticate
 # Create your views here.
@@ -28,6 +28,17 @@ def signup(request):
 
     
 def profile(request):
+        form = ProfileForm()
         current_user=request.user
         profile = Profile.objects.get(user=current_user)
-        return render(request,'profile/profile.html',{"profile":profile})
+        if request.method == 'POST':
+                form = ProfileForm(request.POST,request.FILES,instance=profile)
+                if form.is_valid():
+                        form.save()
+                        return redirect('profile')
+                else:
+                        message = 'Fill in the form appropriately'
+                        return render(request,'profile/profile.html',{"profile":profile,"form":form,"message":message})
+        return render(request,'profile/profile.html',{"form":form,"profile":profile})
+
+
