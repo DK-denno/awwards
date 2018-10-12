@@ -21,7 +21,7 @@ class PostsForm(forms.ModelForm):
     class Meta:
         model = Posts
         exclude = ['user']
-        fields = ['link']
+        fields = ['link','video']
 
 class ImageForm(forms.ModelForm):
     class Meta:
