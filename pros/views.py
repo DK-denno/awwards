@@ -75,4 +75,5 @@ def comment(request,id):
 
 def profiles(request,id):
         user=User.objects.get(id=id)
-        return render('profiles.html',{"user":user})
+        posts = Posts.objects.filter(user=user)
+        return render(request,'profile/profiles.html',{"user":user,"posts":posts})
