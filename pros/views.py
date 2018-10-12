@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,ProfileForm,PostsForm,Comments
 from .models import Profile,Posts
+from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 # Create your views here.
 def index(request):
@@ -71,3 +72,7 @@ def comment(request,id):
             comment.save()
             return redirect('index')
     return redirect('index')
+
+def profiles(request,id):
+        user=User.objects.get(id=id)
+        return render('profiles.html',{"user":user})
