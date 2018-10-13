@@ -113,52 +113,29 @@ class ProfilesList(APIView):
                         return Response(serializing.data,status=status.HTTP_201_CREATED)
                 return Response(serializing.errors,status=status.HTTP_401_BAD_REQUEST)
 
-class ProfileData(APIView):
-        permission_classes = (IsAdminOrReadOnly)
-        def get_profile_data(self,pk):
+class ProfileData(APIView):                
+        permission_classes = (IsAdminOrReadOnly,)
+        def get_profile(self, pk):
                 try:
                         return Profile.objects.get(pk=pk)
                 except Profile.DoesNotExist:
                         return Http404
 
-        def get(self,request,pk,format=None):
-                profile = self.get_profile_data(pk)
+        def get(self, request, pk, format=None):
+                profile = self.get_profile(pk)
                 serialized = ProfileSerializer(profile)
                 return Response(serialized.data)
         
         def put(self,request,pk,format=None):
-                profile = self.get_profile_data(pk)
-                updated_profile = ProfileSerializer(profile,request.data)
-                if updated_profile.is_valid():
-                        updated_profile.save()
-                        return Response(updated_profile.data)
-                return Response(updated_profile.errors,status=status.HTTP_401_BAD_REQUEST)
+                profile = self.get_profile(pk)
+                serializers = ProfileSerializer(profile,request.data)
+                if serializers.is_valid():
+                        serializers.save()
+                        return Response(serializers.data)
+                return Response(serializers.errors,status=ststus.HTTP_400_BAD_REQUEST)
         
         def delete(self,request,pk,format=None):
-                prof = self.get_profile_data(pk)
-                prof.delete()
-                return Response(status=status.HTTP_204_NO_CONTENT)
+                profile = self.get_profile(pk)
+                profile.delete()
+                return Response(status=status.HTTP_204_BAD_REQUEST)
                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
