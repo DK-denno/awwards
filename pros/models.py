@@ -71,6 +71,7 @@ class Comments(models.Model):
 
 class Likes(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
+    post =  models.ForeignKey(Posts,on_delete=models.CASCADE,related_name='likes')
     design = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
     usability = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
     creativity = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
