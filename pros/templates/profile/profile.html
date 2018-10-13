@@ -2,9 +2,8 @@
 {% load bootstrap4 %}
 {% block content %}
 <img src="{{profile.dp.url}}"  width='500' height='500' alt="">
-{% autoescape on %}
-<h1>{{profile.bio|safe}}</h1>
-{% endautoescape %}
+
+
 <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 

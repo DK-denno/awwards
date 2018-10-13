@@ -7,8 +7,8 @@ from rest_framework import status
 from .serializer import PostsSerializer,ProfileSerializer
 from .permissions import IsAdminOrReadOnly
 from django.shortcuts import render,redirect
-from .forms import SignUpForm,ProfileForm,PostsForm,Comments
-from .models import Profile,Posts
+from .forms import SignUpForm,ProfileForm,PostsForm,Comments,Votes
+from .models import Profile,Posts,Likes
 from django.http import Http404
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
@@ -58,12 +58,28 @@ def posts(request):
                         post.user = request.user
                         post.save()
                         return redirect('index')
+                
         return redirect('index')
 
 def get_post_by_id(request,id):
         post = Posts.objects.get(id=id)
         comm = Comments()
-        return render(request,'one.html',{"post":post,"comm":comm})
+        vote = Votes()
+        if request.method == 'POST':
+
+                vote_form = Votes(request.POST)
+                if vote_form.is_valid():
+
+                        design = vote_form.cleaned_data['design']
+                        usability = vote_form.cleaned_data['usability']
+                        content = vote_form.cleaned_data['content']
+                        creativity = vote_form.cleaned_data['creativity']
+                        rating = Likes(design=design,usability=usability,
+                                        content=content,creativity=creativity,
+                                        user=request.user,post=post)
+                        rating.save()
+                        return redirect('/')
+        return render(request,'one.html',{"post":post,"vote":vote,"comm":comm})
 
 
 
@@ -139,3 +155,5 @@ class ProfileData(APIView):
                 profile.delete()
                 return Response(status=status.HTTP_204_BAD_REQUEST)
                 
+
+       
