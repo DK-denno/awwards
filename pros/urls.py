@@ -14,7 +14,7 @@ urlpatterns=[
     url(r'^profiles/(\d+)',views.profiles,name='profiles'),
     url(r'^api/posts',views.PostList.as_view()),
     url(r'^api/profiles',views.ProfilesList.as_view()),
-    url(r'^api/profiles-id/(?P<pk>[0-9]+)/$',
+    url(r'^api/profile/profile-id/(?P<pk>[0-9]+)/$',
         views.ProfileData.as_view()),
 ]
 if settings.DEBUG:

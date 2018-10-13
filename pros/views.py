@@ -117,13 +117,13 @@ class ProfileData(APIView):
         permission_classes = (IsAdminOrReadOnly)
         def get_profile_data(self,pk):
                 try:
-                        return Profile.objects.get(id=pk)
+                        return Profile.objects.get(pk=pk)
                 except Profile.DoesNotExist:
                         return Http404
 
         def get(self,request,pk,format=None):
                 profile = self.get_profile_data(pk)
-                serialized = PostsSerializer(profile)
+                serialized = ProfileSerializer(profile)
                 return Response(serialized.data)
         
         def put(self,request,pk,format=None):

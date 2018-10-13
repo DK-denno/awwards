@@ -68,6 +68,6 @@ class Comments(models.Model):
     post=models.ForeignKey(Posts,related_name='comments')
     comment=models.CharField(max_length=200)
 
-
-    
-    
+class Likes(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    ui = models.IntegerField()
