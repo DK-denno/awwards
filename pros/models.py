@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.validators import MinValueValidator,MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
@@ -70,4 +71,7 @@ class Comments(models.Model):
 
 class Likes(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    ui = models.IntegerField()
+    design = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    usability = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    creativity = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
+    content = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
