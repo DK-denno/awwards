@@ -16,6 +16,7 @@ urlpatterns=[
     url(r'^api/profiles',views.ProfilesList.as_view()),
     url(r'^api/profile/profile-id/(?P<pk>[0-9]+)/$',
         views.ProfileData.as_view()),
+    url(r'^search',views.search,name='search'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

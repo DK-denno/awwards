@@ -8,18 +8,28 @@
 <div class="col-md-4">
     {{post.link}}
   votes
+  <div class="card">
+    <div class="card-header">
+      {% if post.user.profile.dp %}
+      <img src="{{post.user.profile.dp.url}}" id="prof" alt="">
+      {% else %}
+      <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" alt="">
+      {% endif %}
+      {{post.user.username}}
+    </div>
+   
     <div id="demo" class="carousel slide" data-ride="carousel">      
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <a href='/one/{{post.id}}'>
               <div class="carousel-item active">
-                <img src="{{post.image1.url}}" alt="Los Angeles" height="300px" width="300px"> 
+                <img src="{{post.image1.url}}" alt="Los Angeles" height="300px" width="400px"> 
               </div>
               <div class="carousel-item">
-                <img src="{{post.image2.url}}" alt="Chicago" height="300px" width="300px">
+                <img src="{{post.image2.url}}" alt="Chicago" height="300px" width="400px">
               </div>
               <div class="carousel-item">
-                <img src="{{post.image3.url}}" alt="New York" height="300px" width="300px">
+                <img src="{{post.image3.url}}" alt="New York" height="300px" width="400px">
               </div>
             </div>
         </a>
@@ -27,7 +37,7 @@
             
           </div>
 </div>
-  
+</div>
   {% endfor %}
 </div>
 <div class="modal fade" id="account" role="dialog">

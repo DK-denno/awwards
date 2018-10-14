@@ -39,6 +39,7 @@ def signup(request):
 def profile(request):
         form = ProfileForm()
         current_user=request.user
+        posts = Posts.objects.filter(user=current_user)
         profile = Profile.objects.get(user=current_user)
         if request.method == 'POST':
                 form = ProfileForm(request.POST,request.FILES,instance=profile)
@@ -48,7 +49,7 @@ def profile(request):
                 else:
                         message = 'Fill in the form appropriately'
                         return render(request,'profile/profile.html',{"profile":profile,"form":form,"message":message})
-        return render(request,'profile/profile.html',{"form":form,"profile":profile})
+        return render(request,'profile/profile.html',{"form":form,"posts":posts,"profile":profile})
 
 def posts(request):
         if request.method == 'POST':
@@ -156,4 +157,14 @@ class ProfileData(APIView):
                 return Response(status=status.HTTP_204_BAD_REQUEST)
                 
 
-       
+def search(request):
+          
+    if 'projects' in request.GET or request.GET['projects']:
+        search_item = request.GET.get('projects')
+        searched_users = Posts.objects.filter(name=search_item)
+        print(searched_users)
+        message = "{}".format(search_item)
+        return render(request, 'search.html',{"message":message,"users": searched_users})
+    else:
+        message = "You haven't searched for any user"
+        return render(request, 'search.html',{"message":message})
