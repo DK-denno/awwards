@@ -4,17 +4,19 @@
 <a href="/profiles/{{post.user.id}}">
 {% if post.user.profile.dp%}
 
-  <h2><img id="prof" src="{{post.user.profile.dp.url}}" alt=""> {{post.user.username}}</h2>
+  <h2><img  style="border-radius: 50%; width: 70px; height: 70px;" class="img-thumbnail " src="{{post.user.profile.dp.url}}" alt=""> {{post.user.username}}</h2>
   {% else%}
-  <h4><img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" alt="" width="50px" height="50px" style="border-radius: 50%;" class="img-thumbnail "><a href="/profiles/{{post.user.id}}">{{post.user.username}}</a></h4> 
+  <h4><img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" alt="" style="border-radius: 50%; width: 70px; height: 70px;" class="img-thumbnail "><a href="/profiles/{{post.user.id}}">{{post.user.username}}</a></h4> 
   {% endif%}
   </a>
-<video width="950px" height="500px" autoplay controls>
+<video width="850px" height="500px" autoplay controls>
     <source src="{{post.video.url}}" type="video/mp4">
     <source src="{{post.video.url}}" type="video/mkv">
     <source src="{{post.video.url}}" type="video/ogg">
     Your browser does not support the video tag.
-</video>   
+</video>
+<img data-toggle="modal" data-target="#clap" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/apple/129/clapping-hands-sign_1f44f.png" alt="">
+
 <div class="row">
   <div class="col-md-4">
       <div class="card" id="comments">
@@ -60,13 +62,41 @@
     {% bootstrap_form comm %}
     <input type="submit" class="btn btn-primary btn-lg" value="Add comment">
 </form>
-<form action="" method="post" enctype="multipart/form-data">
-  {%csrf_token%}
 
-  {% bootstrap_form vote %}
-  
-  <button class='btn btn-primary' type='submit' >SUBMIT</button>
-</form>
 </div>
+
+
+<div class="modal fade" id="clap" role="dialog">
+        <div class="modal-dialog">
+      
+            <!-- Modal content-->
+            <div style="font-size: 20px; font-family: 'Mali', cursive;" class="modal-content">
+                <div class="modal-header">
+                  <h2>RATE</h2>
+                 
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+                </div>
+                  <div class='row' style="margin-left: 10px;" >
+                      <em><b>N/B:<h4>Fill in all the fields</h4></b></em>
+                  </div>
+                <div class="modal-body">
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                          
+                            {% bootstrap_form vote %}
+                            
+                            <button class='btn btn-primary' type='submit' >SUBMIT</button>
+                          </form>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+      
+      </div>
  
 {% endblock %}

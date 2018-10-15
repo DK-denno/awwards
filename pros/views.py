@@ -64,6 +64,8 @@ def posts(request):
 
 def get_post_by_id(request,id):
         post = Posts.objects.get(id=id)
+        design = post.likes.design
+        print(design)
         comm = Comments()
         vote = Votes()
         if request.method == 'POST':
@@ -103,8 +105,8 @@ def profiles(request,id):
 
 class PostList(APIView):
         def get(self,request,format=None):
-                profiles = Posts.objects.all()
-                serialized = PostsSerializer(profiles,many=True)
+                post = Posts.objects.all()
+                serialized = PostsSerializer(post,many=True)
                 return Response(serialized.data)
 
         def post(self,request,format=None):
@@ -161,8 +163,8 @@ def search(request):
           
     if 'projects' in request.GET or request.GET['projects']:
         search_item = request.GET.get('projects')
-        searched_users = Posts.objects.filter(name=search_item)
-        print(searched_users)
+        searched_projects = Posts.objects.filter(name=search_item)
+        print(searched_projects)
         message = "{}".format(search_item)
         return render(request, 'search.html',{"message":message,"users": searched_users})
     else:

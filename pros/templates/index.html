@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<h1>HOME PAGE</h1>
 <div class="row">
-
+<button data-toggle="modal" data-target="#account" > New Project </button>
   {% for post in posts %}
 <div class="col-md-4">
     {{post.link}}
@@ -11,9 +10,9 @@
   <div class="card">
     <div class="card-header">
       {% if post.user.profile.dp %}
-      <img src="{{post.user.profile.dp.url}}" id="prof" alt="">
+      <img src="{{post.user.profile.dp.url}}" style="border-radius: 50%; width: 70px; height: 70px;" class="img-thumbnail " id="prof" alt="">
       {% else %}
-      <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" alt="">
+      <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" style="border-radius: 50%; width: 70px; height: 70px;" class="img-thumbnail " alt="">
       {% endif %}
       {{post.user.username}}
     </div>

@@ -4,16 +4,23 @@
 <div class="row">
         <div class="col-md-4">
             {% if user.profile.dp %}
-            <img id=""  src="{{user.profile.dp.url}}"  alt="">
+            <div class="row">
+            <img id="" data-toggle="modal" data-target="#profile" src="{{user.profile.dp.url}}" style="border-radius: 100%; width: 140px; height: 140px;" class="img-thumbnail " alt="">
+            <br>
+            <br>
+            <h3><em>{{ user.username}}</em></h3>
+          </div>
+            <h3><em>{{user.profile.bio}}</em></h3>
+       
             {% else %}
-            <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" style="border-radius: 50%;" width="350px" height="350px" alt="">
+            <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" style="border-radius: 100%; width: 140px; height: 140px;" class="img-thumbnail " alt="">
+            <h3><em>{{ user.username}}</em></h3>
             {% endif %}
             
         </div>
-        <div class="col-md-4">
-          {{ user.username}}
-          {{ user.bio}}
-        </div>
+       
+          
+          
         <div class="col-md-4">
           
         </div>
@@ -52,11 +59,39 @@
           {% endfor %}
       </div>
 
-<form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
 
-    {% bootstrap_form form %}
-    
-    <button class='btn btn-primary' type='submit' >SUBMIT</button>
-</form>
+<div class="modal fade" id="profile" role="dialog">
+    <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div style="font-size: 20px; font-family: 'Mali', cursive;" class="modal-content">
+            <div class="modal-header">
+              <h2>EDIT PROFILE </h2>
+             
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            </div>
+              <div class='row' style="margin-left: 10px;" >
+                  <em><b>N/B:<h4>Fill in all the fields</h4></b></em>
+              </div>
+            <div class="modal-body">
+                <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                  {%csrf_token%}
+              
+                  {% bootstrap_form form %}
+                  
+                  <button class='btn btn-primary' type='submit' >SUBMIT</button>
+              </form>
+               
+
+               
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+  
+  </div>
 {% endblock %}
