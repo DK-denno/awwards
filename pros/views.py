@@ -75,11 +75,26 @@ def get_post_by_id(request,id):
                 usability.append(x.usability)
                 creativity.append(x.creativity)
                 content.append(x.content)
-        des = (sum(usability)/len(usability))
-        usa = (sum(creativity)/len(creativity))
-        crea = (sum(design)/len(design))
-        cont = (sum(content)/len(content))
-        print (des)
+        de = []
+        us = []
+        cre = []
+        con = []
+
+        if len(usability)>0:
+                usa = (sum(usability)/len(usability))
+                us.append(usa)
+        if len(creativity)>0:
+                crea = (sum(creativity)/len(creativity))
+                cre.append(crea)
+        if len(design)>0:
+                des = (sum(design)/len(design))
+                de.append(des)
+        if len(content)>0:
+                cont = (sum(content)/len(content))
+                con.append(cont)
+        
+  
+
         comm = Comments()
         vote = Votes()
         if request.method == 'POST':
