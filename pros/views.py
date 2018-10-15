@@ -10,6 +10,7 @@ from django.shortcuts import render,redirect
 from .forms import SignUpForm,ProfileForm,PostsForm,Comments,Votes
 from .models import Profile,Posts,Likes
 from django.http import Http404
+
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 # Create your views here.
@@ -64,8 +65,21 @@ def posts(request):
 
 def get_post_by_id(request,id):
         post = Posts.objects.get(id=id)
-        design = post.likes.design
-        print(design)
+        likes = Likes.objects.filter(post=post)
+        design = []
+        usability = []
+        creativity = []
+        content = []
+        for x in likes:
+                design.append(x.design)
+                usability.append(x.usability)
+                creativity.append(x.creativity)
+                content.append(x.content)
+        des = (sum(usability)/len(usability))
+        usa = (sum(creativity)/len(creativity))
+        crea = (sum(design)/len(design))
+        cont = (sum(content)/len(content))
+        print (des)
         comm = Comments()
         vote = Votes()
         if request.method == 'POST':
@@ -82,7 +96,7 @@ def get_post_by_id(request,id):
                                         user=request.user,post=post)
                         rating.save()
                         return redirect('/')
-        return render(request,'one.html',{"post":post,"vote":vote,"comm":comm})
+        return render(request,'one.html',{"post":post,"des":des,"usa":usa,"cont":cont,"crea":crea, "vote":vote,"comm":comm})
 
 
 
