@@ -10,3 +10,5 @@
 [2018-10-16 12:16:59.651] [exthost] [info] ExtensionService#_doActivateExtension vscode.search-rg {"startup":true,"activationEvent":"*"}
 [2018-10-16 12:16:59.651] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/search-rg/dist/extension
 [2018-10-16 12:16:59.657] [exthost] [info] eager extensions activated
+[2018-10-16 12:19:40.174] [exthost] [info] ExtensionService#_doActivateExtension vscode.python {"startup":false,"activationEvent":"onLanguage:python"}
+[2018-10-16 12:19:40.174] [exthost] [info] ExtensionService#loadCommonJSModule /usr/share/code/resources/app/extensions/python/out/pythonMain
