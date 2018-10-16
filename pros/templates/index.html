@@ -5,8 +5,6 @@
 
   {% for post in posts %}
 <div class="col-md-4">
-    {{post.link}}
-  votes
   <div class="card">
     <div class="card-header">
       {% if post.user.profile.dp %}
@@ -15,6 +13,8 @@
       <img src="https://afcm.ca/wp-content/uploads/2018/06/no-photo.png" style="border-radius: 50%; width: 70px; height: 70px;" class="img-thumbnail " alt="">
       {% endif %}
       {{post.user.username}}
+      <br>
+     
     </div>
    
     <div id="demo" class="carousel slide" data-ride="carousel">      
